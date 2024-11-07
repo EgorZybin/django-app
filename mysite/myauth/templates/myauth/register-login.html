@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Register/Login</title>
+	<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			font-family: 'Jost', sans-serif;
+			background: linear-gradient(to bottom, #0f0c29, #00fffc, #24243e);
+		}
+
+		.main {
+			width: 350px;
+			height: 500px;
+			background: red;
+			overflow: hidden;
+			background-color: #01c7c4;
+			border-radius: 10px;
+			box-shadow: 5px 20px 50px #000;
+		}
+
+		#chk {
+			display: none;
+		}
+
+		.signup {
+			position: relative;
+			width: 100%;
+			height: 100%;
+		}
+
+		label {
+			color: 000;
+			font-size: 2.3em;
+			justify-content: center;
+			display: flex;
+			margin: 50px;
+			font-weight: bold;
+			cursor: pointer;
+			transition: .5s ease-in-out;
+		}
+
+		input {
+			width: 60%;
+			height: 10px;
+			background: #e0dede;
+			justify-content: center;
+			display: flex;
+			margin: 20px auto;
+			padding: 12px;
+			border: none;
+			outline: none;
+			border-radius: 5px;
+		}
+
+		input:active,
+		input:focus {
+			border: 2px solid #000;
+		}
+
+		button {
+			width: 60%;
+			height: 40px;
+			margin: 10px auto;
+			justify-content: center;
+			display: block;
+			color: 000;
+			background: #00fffc;
+			font-size: 1em;
+			font-weight: bold;
+			margin-top: 30px;
+			outline: none;
+			border: none;
+			border-radius: 5px;
+			transition: .1s ease-in;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: transparent;
+			border: 3px solid #000;
+			box-shadow: 0 0 10px #00fffc,
+				0 10px 15px #00fffc;
+		}
+
+		.login {
+			height: 460px;
+			background: #eee;
+			border-radius: 60% / 10%;
+			transform: translateY(-180px);
+			transition: .8s ease-in-out;
+		}
+
+		.login label {
+			color: #000;
+			transform: scale(.6);
+		}
+
+		#chk:checked~.login {
+			transform: translateY(-500px);
+		}
+
+		#chk:checked~.login label {
+			transform: scale(1);
+		}
+
+		#chk:checked~.signup label {
+			transform: scale(.6);
+		}
+
+
+		/* -- External Social Link CSS Styles -- */
+
+		#source-link {
+			top: 120px;
+		}
+
+		#source-link>i {
+			color: rgb(94, 106, 210);
+		}
+
+		#yt-link {
+			top: 65px;
+		}
+
+		#yt-link>i {
+			color: rgb(219, 31, 106);
+
+		}
+
+		#Fund-link {
+			top: 10px;
+		}
+
+		#Fund-link>i {
+			color: rgb(255, 251, 0);
+
+		}
+
+		.meta-link {
+			align-items: center;
+			backdrop-filter: blur(3px);
+			background-color: rgba(255, 255, 255, 0.05);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 6px;
+			box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+			cursor: pointer;
+			display: inline-flex;
+			gap: 5px;
+			left: 10px;
+			padding: 10px 20px;
+			position: fixed;
+			text-decoration: none;
+			transition: background-color 600ms, border-color 600ms;
+			z-index: 10000;
+		}
+
+		.meta-link:hover {
+			background-color: rgba(255, 255, 255, 0.1);
+			border: 1px solid rgba(255, 255, 255, 0.2);
+		}
+
+		.meta-link>i,
+		.meta-link>span {
+			height: 20px;
+			line-height: 20px;
+		}
+
+		.meta-link>span {
+			color: white;
+			font-family: "Rubik", sans-serif;
+			transition: color 600ms;
+		}
+	</style>
+</head>
+
+<body>
+    <div class="main">
+       <input type="checkbox" id="chk" aria-hidden="true">
+       <div class="signup">
+          <form action="{% url 'myauth:register' %}" method="post">
+                {% csrf_token %}
+                <label for="chk" aria-hidden="true">Sign up</label>
+                <input type="text" name="username" placeholder="User name" required="">
+                <input type="password" name="password1" placeholder="Password" required="">
+                <input type="password" name="password2" placeholder="Confirm Password" required="">
+                <button>Sign up</button>
+          </form>
+       </div>
+       <div class="login">
+          <form action="{% url 'myauth:login' %}" method="post">
+             {% csrf_token %}
+              <label for="chk" aria-hidden="true">Login</label>
+             <input type="text" name="username" placeholder="User name" required="">
+             <input type="password" name="password" placeholder="Password" required="">
+             <button type="submit">Login</button>
+          </form>
+       </div>
+    </div>
+</body>
+</html>
+

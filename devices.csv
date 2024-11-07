@@ -1,0 +1,4 @@
+name,description,price,count,discount,created_by
+Laptop,"A new one",1999.00,10,10
+Desktop,"A new one",2999.00,5,25
+Smartphone,"A new one",999.00,20,10

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Skillbox</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <style>
+            * {
+                font-family: 'Roboto', sans-serif;
+            }
+
+            html, body {
+                margin: auto;
+                background-color: #f6f7f9;
+            }
+
+            header {
+                height: 100px;
+                padding: 0 40px;
+            }
+
+            header > div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .fixed-container {
+                max-width: 1000px;
+                height: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                
+            }
+
+            section {
+                padding: 40px;
+            }
+
+            .first-block {
+                height: 300px;
+            }
+
+            .first-block > div {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                background-image: url('img/5.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: right center;
+             
+            }
+
+            .services {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 30px;
+            }
+
+            .sites {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 30px;
+            }
+
+            .social-references {
+                display: flex;
+                justify-content: space-between;
+              
+                
+            }
+
+            .social-references > div {
+                width: 40px;
+            }
+
+            .social-references img {
+                width: 35px;
+            }
+
+            .sites > div {
+                width: 260px;
+            }
+
+            .sites img {
+                width: 250px;
+            }
+
+            .services > div {
+                width: 200px;
+            }
+
+            .services img {
+                width: 150px;
+            }
+
+            .price-info {
+                background-color: #3d52fe;
+                color: white;
+            }
+
+            .light-button {
+                border: 1px solid black;
+                background-color: transparent;
+                margin-bottom: 20px;
+            }
+
+            .dark-button {
+                background-color: #3d52fe;
+                border: 1px solid #3d52fe;
+                color: white;
+            }
+
+            button {
+                padding: 10px 30px;
+                cursor: pointer;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            .referenses {
+                color: black;
+                text-decoration: none;
+                margin-right: 30px;
+                margin-top: 15px;
+            }
+
+            .referenses:hover {
+                text-decoration: underline;
+            }
+
+            .footer-referenses {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                margin-top: 40px;
+
+            }
+
+            footer {
+                padding: 30px;
+                height: 300px;
+            }
+
+            footer > div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+               
+            }
+
+                .popup-container {
+                background-color: #000000b3;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                display: none;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .popup {
+                background-color: white;
+                width: 300px;
+                height: 300px;
+                padding: 30px;
+                border-radius: 5px;
+            }
+
+
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                var container =
+            document.querySelector('.popup-container');
+                var popupButtons =
+            document.querySelectorAll('.open-popup');
+                for (let i = 0; i < popupButtons.length; i++) {
+                    popupButtons[i].addEventListener('click', function(){
+                        container.style.display = 'flex';
+                });
+            }
+
+
+            container.addEventListener('click', function(event){
+                if(event.target == container) {
+                    container.style.display = 'none';
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="popup-container">
+            <form class="popup" method="post">
+                <div class="mb-3">
+                    <input type="text" name="name" placeholder="Введите ваше имя" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="email" placeholder="Введите ваш e-mail" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="Отправить" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+        <header>
+            <div class="fixed-container">
+                <div>
+                    <a class="referenses" href="#">Услуги</a>
+                    <a class="referenses" href="#">Портфолио</a>
+                    <a class="referenses" href="#">Стоимость</a>
+                </div>
+                <div>
+                    <span style="padding: 10px;">+7 911 612-31-18</span>
+                    <button class="light-button open-popup">Заказать звонок</button>
+                </div>
+            </div>
+        </header>
+        <section class="first-block">
+            <div class="fixed-container">
+                <h1>Дмитрий Алексеев</h1>
+                <p>Frontend-разработчик и веб-верстальщик</p>
+                <button class="dark-button open-popup">Узнать больше</button>
+            </div>
+
+        </section>
+        <section>
+            <div class="fixed-container">
+                <h2>Что я делаю</h2>
+                <div class="services">
+                    <div>
+                        <img src="img/1.png" alt="">
+                        Вёрстка лэндинг-страниц и сайтов любой сложности
+                    </div>
+                    <div>
+                         <img src="img/2.png" alt="">
+                        Адаптивная вёрстка под все браузеры и устройства
+                    </div>
+                    <div>
+                         <img src="img/3.png" alt="">
+                        Frontend-разработка и программирование
+                    </div>
+                    <div>
+                         <img src="img/4.png" alt="">
+                        Исправление и доработка существующей вёрстки
+                    </div>
+                </div>
+                <button class="light-button open-popup">Узнать стоимость</button>
+            </div>
+
+        </section>
+        <section>
+            <div class="fixed-container">
+                <h2>Примеры работ</h2>
+                <div class="sites">
+                    <div>
+                        <img src="img/6.png" alt="">
+                        <small>Сайт психолога Веры Антоновой</small>
+                    </div>
+                    <div>
+                        <img src="img/7.png" alt="">
+                         <small>Сайт магазина детской одежды</small>
+                    </div>
+                    <div>
+                        <img src="img/8.png" alt="">
+                         <small>Сайт магазина "Рыболов"</small>
+                    </div>
+                </div>
+                <button class="light-button open-popup">Заказать проект</button>
+            </div>
+
+        </section>
+        <section class="price-info">
+            <div class="fixed-container">
+                <div>
+                    <h2 style="margin-bottom: 60px; padding-bottom: 10px;"><br>Адаптивная вёрстка под все<br>устройства и браузеры<br>от 1000 р. всего за 4 часа.*</br></h2>
+                    <p><small>* Срок и стоимость могут отличаться от заявленнных и рассчитываются<br>индивидуально, в зависимости от сложных задач.</small></p>
+                </div>
+            </div>
+
+        </section>
+        <footer>
+            <div class="fixed-container">
+                <div class="footer-referenses">
+                    <a class="referenses" href="#">Услуги</a>
+                    <a class="referenses" href="#">Портфолио</a>
+                    <a class="referenses" href="#">Стоимость</a>
+                </div>
+                <div style="margin-top: 32px;">
+                    <span>zibinegor@yandex.ru<p>+7 911 612-31-18</p></span>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="light-button open-popup">Заказать звонок</button>
+                    <div class="social-references">
+                        <div>
+                            <img src="img/9.png" alt="">
+                        </div>
+                        <div>
+                            <img src="img/10.png" alt="">
+                        </div>
+                         <div>
+                            <img src="img/11.png" alt="">
+                        </div>
+                         <div>
+                            <img src="img/12.png" alt="">
+                        </div>
+                         <div>
+                            <img src="img/13.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </footer>
+    </body>
+</html>
+

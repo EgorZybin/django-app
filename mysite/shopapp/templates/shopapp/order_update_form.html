@@ -1,0 +1,29 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+Update Order
+{% endblock %}
+
+{% block body %}
+<h1>Update order!</h1>
+<div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <ul>
+            {% for product in products %}
+              <li>
+                <input type="checkbox" name="products" value="{{ product.pk }}">
+                <label>{{ product.name }}</label>
+              </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Обновить заказ</button>
+    </form>
+</div>
+
+<div>
+    <a href="{% url 'shopapp:orders_details' pk=order.pk %}"
+    >Back to product #{{ object.pk }}</a>
+</div>
+{% endblock %}

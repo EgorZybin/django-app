@@ -1,0 +1,37 @@
+{% extends 'myauth/base.html' %}
+
+{% block title %}
+    User Details
+{% endblock %}
+
+{% block body %}
+    <h1>User Details: {{ object.username }}</h1>
+        <div>
+            <p>First name: {{ object.profile.first_name }}</p>
+            <p>Last name: {{ object.profile.last_name }}</p>
+            <p>Email: {{ object.profile.email }}</p>
+            <p>Bio: {{ object.profile.bio }}</p>
+            <p>Agreement accepted: {{ object.profile.agreement_accepted }}</p>
+            {% if object.profile.avatar %}
+                <img src="{{ object.profile.avatar.url }}" alt="Avatar">
+            {% else %}
+            <p>No avatar</p>
+            {% endif %}
+
+        </div>
+        <div>
+            {% if request.user.is_staff or request.user == object %}
+                <a href="{% url 'myauth:profile_update' pk=object.pk %}">Редактировать профиль</a>
+            {% endif %}
+        </div>
+        <div>
+            {% if request.user.is_staff or request.user == object %}
+            <a href="{% url 'myauth:profile_delete' pk=user.pk %}">Удалить профиль</a>
+            {% endif %}
+        </div>
+        <div>
+            <a href="{% url 'myauth:profile_list' %}">Вернуться к списку пользователей</a>
+        </div>
+
+
+{% endblock %}

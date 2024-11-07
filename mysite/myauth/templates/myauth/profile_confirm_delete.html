@@ -1,0 +1,24 @@
+{% extends 'myauth/base.html' %}
+
+{% block title %}
+    Confirm deleted {{ object.username }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>Вы уверены, что хотите удалить этот профиль {{object.username}}?</h1>
+    <br>
+    <div>
+        <a href="{% url 'myauth:profile_details' pk=object.pk %}">Назад к профилю</a>
+    </div>
+    </br>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">
+                Удалить
+            </button>
+        </form>
+    </div>
+{% endblock %}

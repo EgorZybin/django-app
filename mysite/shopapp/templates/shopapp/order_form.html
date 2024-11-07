@@ -1,0 +1,29 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+Create Order
+{% endblock %}
+
+{% block body %}
+<h1>Create a new order!</h1>
+<div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <ul>
+            {% for product in products %}
+              <li>
+                <input type="checkbox" name="products" value="{{ product.pk }}">
+                <label>{{ product.name }}</label>
+              </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Создать заказ</button>
+    </form>
+</div>
+
+<div>
+    <a href="{% url 'shopapp:orders_list' %}"
+    >Back to order list</a>
+</div>
+{% endblock %}

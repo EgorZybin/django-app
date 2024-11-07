@@ -1,0 +1,52 @@
+{% extends 'shopapp/base.html' %}
+
+
+{% load i18n %}
+{% block title %}
+    {% translate 'Product' %} #{{ product.pk }}
+{% endblock %}
+
+{% block body %}
+    <h1>{% translate 'Product' %}: <strong>{{product.name}}</strong></h1>
+    <div>{% translate 'Description' %}: <em>{{ product.description }}</em></div>
+    <div>{% translate 'Price' %}: <strong>{{product.price}} {% translate 'rub' %}</strong></div>
+    {% blocktranslate count counts=product.count %}
+        {% plural %}
+            <div>Count: <strong>{{counts}} pieces</strong></div>
+    {% endblocktranslate %}
+    {% translate 'no discount' as no_discount %}
+    <div>{% translate 'Discount' %}: <strong>{% firstof product.discount no_discount %}%</strong></div>
+    <div>{% translate 'Created at' %}: <strong>{{product.created_at}}</strong></div>
+    <div>{% translate 'Archived' %}: <strong>{{product.archived}}</strong></div>
+    <div>{% translate 'Created by' %}: <strong>{{product.created_by}}</strong></div>
+    {% if product.preview %}
+        <img src="{{ product.preview.url }}" alt="{{ product.preview.name }}">
+    {% endif %}
+    <p>
+            {% blocktranslate count images_count=product.images.all|length %}
+            There is only one image.
+            {% plural %}
+            There are {{ images_count }} images.
+            {% endblocktranslate %}
+    </p>
+    <h3>{% translate 'Images' %}:</h3>
+    <div>
+        {% for img in product.images.all %}
+        <div>
+            <img src="{{ img.image.url }}" alt="{{ img.image.name }}">
+            <div>{{ img.description }}</div>
+        </div>
+        {% empty %}
+        <div>{% translate 'No images yet' %}</div>
+        {% endfor %}
+    </div>
+    <div>
+        <a href="{% url 'shopapp:product_update' pk=product.pk %}">{% translate 'Update product' %}</a>
+    </div>
+    <div>
+        <a href="{% url 'shopapp:product_delete' pk=product.pk %}">{% translate 'Delete product' %}</a>
+    </div>
+    <div>
+        <a href="{% url 'shopapp:products_list' %}">{% translate 'Back to product list' %}</a>
+    </div>
+{% endblock %}

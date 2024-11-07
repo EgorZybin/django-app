@@ -1,0 +1,51 @@
+{% extends 'myauth/base.html' %}
+{% load cache %}
+{% block title %}
+    About Me
+{% endblock %}
+
+{% block body %}
+    <h1>User info</h1>
+    <div>
+        Products available: {% now "u" %}
+    </div>
+    {% if user.is_authenticated %}
+      {% cache 300 userinfo user.username %}
+      <h2>Details</h2>
+      <p>Username: {{ user.username }}</p>
+      <p>First name: {{ user.profile.first_name }}</p>
+      <p>Last name: {{ user.profile.last_name }}</p>
+      <p>Email: {{ user.profile.email }}</p>
+      <p>Bio: {{ user.profile.bio }}</p>
+      <p>Agreement accepted: {{ user.profile.agreement_accepted }}</p>
+
+      <h2>Avatar</h2>
+         {% if user.profile.avatar %}
+            <img src="{{ user.profile.avatar.url }}" alt="Avatar">
+         {% else %}
+            <p>No avatar</p>
+         {% endif %}
+
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" name="avatar-clear" value="1">Удалить аватар</button>
+            <button type="submit">Сохранить</button>
+          </form>
+    {% endcache %}
+    {% else %}
+      <h2>You are not logged in</h2>
+      <a href="{% url 'myauth:login' %}">Войти в аккаунт</a>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+    <p><a href="{% url 'myauth:profile_list' %}">Список пользователей</a></p>
+    <p><a href="{% url 'myauth:logout' %}">Выход из аккаунта</a></p>
+
+        <div>
+            {% if request.user.is_staff or request.user == user %}
+            <a href="{% url 'myauth:profile_delete' pk=user.pk %}">Удалить аккаунт</a>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

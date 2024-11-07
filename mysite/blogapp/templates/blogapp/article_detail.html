@@ -1,0 +1,20 @@
+{% extends 'blogapp/base.html' %}
+
+{% block title %}
+    Article #{{ object.pk }}
+{% endblock %}
+
+{% block body %}
+  <h1>Статья #{{ object.pk }}</h1>
+  <p>Дата публикации: {{ object.pub_date }}</p>
+  <p>Автор: {{ object.author.name }}</p>
+  <p>Категория: {{ object.category.name }}</p>
+  <p>Тэги:</p>
+  <ul>
+    {% for tag in object.tags.all %}
+      <li>{{ tag.name }}</li>
+    {% endfor %}
+  </ul>
+  <p>{{ object.content }}</p>
+  <a href="{% url 'article_list' %}">Вернуться к списку статей</a>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'blogapp/base.html' %}
+
+{% block title %}
+    BlogApp
+{% endblock %}
+
+{% block body %}
+  <h1>Список статей</h1>
+  <ul>
+    {% if not article_list %}
+    <h3>No articles yet</h3>
+    {% else %}
+    {% for article in article_list %}
+      <li>
+        <h2><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></h2>
+        <p>Дата публикации: {{ article.pub_date }}</p>
+        <p>Автор: {{ article.author.name }}</p>
+        <p>Категория: {{ article.category.name }}</p>
+        <p>Тэги:</p>
+        <ul>
+          {% for tag in article.tags.all %}
+            <li>{{ tag.name }}</li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+    {% endif %}
+  </ul>
+{% endblock %}
