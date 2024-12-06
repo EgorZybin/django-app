@@ -6,7 +6,7 @@ authors = ["EgorZybin <zibinegor@yandex.ru>"]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-django = "^5.1.3"
+django = "^5.1.4"
 djangorestframework = "^3.15.2"
 django-filter = "^24.3"
 django-debug-toolbar = "^4.4.6"
